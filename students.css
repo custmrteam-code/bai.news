@@ -1,0 +1,824 @@
+        /* --- General Body & Font Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            margin: auto;
+            /* padding: 2rem; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        #header {
+            background-color: rgba(255, 255, 255, 0.487);
+            opacity: 0.95;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 0 1px 0;
+            backdrop-filter: blur(20px);
+            width: 100%;
+            height: 7.5vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /*.  =============== SIDE-BAR ============================ */
+
+        /* HIDE CHECKBOX */
+        #check {
+            display: none;
+        }
+
+        /* Place label/button at top-left */
+        .btn_toggle {
+            position: absolute;
+            top: 10px;
+            left: 16px;
+            cursor: pointer;
+            z-index: 1002;
+            /* above sidebar */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 65px;
+            height: 65px;
+            /* margin-top: 0.2rem; */
+        }
+
+        /* background container */
+        .background1 {
+            width: 65px;
+            height: 65px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0.4rem;
+            /* margin-left: 0.4rem; */
+        }
+
+        /* menu icon container (used INSIDE the label) */
+        .menu__icon {
+            width: 32px;
+            height: 32px;
+            padding: 4px;
+            display: inline-block;
+        }
+
+        /* three bars */
+        .menu__icon span {
+            display: block;
+            width: 100%;
+            height: 0.09rem;
+            border-radius: 2px;
+            background-color: black;
+            /* visible color when closed */
+            box-shadow: 0 .5px 2px 0 hsla(0, 0%, 0%, .2);
+            transition: background-color .4s;
+            position: relative;
+        }
+
+        /* spacing between bars */
+        .menu__icon span+span {
+            margin-top: .375rem;
+        }
+
+        /* initial (unchecked) animation state */
+        .menu__icon span:nth-child(1) {
+            animation: ease .8s menu-icon-top-2 forwards;
+        }
+
+        .menu__icon span:nth-child(2) {
+            animation: ease .8s menu-icon-scaled-2 forwards;
+        }
+
+        .menu__icon span:nth-child(3) {
+            animation: ease .8s menu-icon-bottom-2 forwards;
+        }
+
+        /* When checkbox is checked -> animate to X */
+        #check:checked~.btn_toggle .menu__icon span:nth-child(1) {
+            animation: ease .8s menu-icon-top forwards;
+            background-color: rgb(255, 255, 255);
+            width: 80%;
+
+        }
+
+        #check:checked~.btn_toggle .menu__icon span:nth-child(2) {
+            animation: ease .8s menu-icon-scaled forwards;
+        }
+
+        #check:checked~.btn_toggle .menu__icon span:nth-child(3) {
+            animation: ease .8s menu-icon-bottom forwards;
+            background-color: rgb(255, 255, 255);
+            width: 80%;
+        }
+
+        /* When unchecked -> reset animation */
+        #check:not(:checked)~.btn_toggle .menu__icon span:nth-child(1) {
+            animation: ease .8s menu-icon-top-2 forwards;
+        }
+
+        #check:not(:checked)~.btn_toggle .menu__icon span:nth-child(2) {
+            animation: ease .8s menu-icon-scaled-2 forwards;
+        }
+
+        #check:not(:checked)~.btn_toggle .menu__icon span:nth-child(3) {
+            animation: ease .8s menu-icon-bottom-2 forwards;
+        }
+
+        /* Animations (kept from your original CSS) */
+        @keyframes menu-icon-top {
+            0% {
+                top: 0;
+                transform: rotate(0);
+            }
+
+            50% {
+                top: .5rem;
+                transform: rotate(0);
+            }
+
+            100% {
+                top: .5rem;
+                transform: rotate(45deg);
+            }
+        }
+
+        @keyframes menu-icon-top-2 {
+            0% {
+                top: .5rem;
+                transform: rotate(45deg);
+            }
+
+            50% {
+                top: .5rem;
+                transform: rotate(0);
+            }
+
+            100% {
+                top: 0;
+                transform: rotate(0);
+            }
+        }
+
+        @keyframes menu-icon-bottom {
+            0% {
+                bottom: 0;
+                transform: rotate(0);
+            }
+
+            50% {
+                bottom: .5rem;
+                transform: rotate(0);
+            }
+
+            100% {
+                bottom: .5rem;
+                transform: rotate(135deg);
+            }
+        }
+
+        @keyframes menu-icon-bottom-2 {
+            0% {
+                bottom: .5rem;
+                transform: rotate(135deg);
+            }
+
+            50% {
+                bottom: .5rem;
+                transform: rotate(0);
+            }
+
+            100% {
+                bottom: 0;
+                transform: rotate(0);
+            }
+        }
+
+        @keyframes menu-icon-scaled {
+            50% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(0);
+            }
+        }
+
+        @keyframes menu-icon-scaled-2 {
+            0% {
+                transform: scale(0);
+            }
+
+            50% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* ----------------------------
+    sidebar styles 
+   ---------------------------- */
+
+        .sidebar {
+            background: #111;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            left: -17rem;
+            height: 95vh;
+            width: 4.5rem;
+            background-color: rgb(0, 0, 0);
+            transition: all 0.3s linear;
+            z-index: 1000;
+            /* below the toggle button */
+            top: 0;
+            border-radius: 1rem;
+            margin: 0.3rem 0 1vh 0;
+        }
+
+        /* open sidebar */
+        #check:checked~.sidebar {
+            left: 0.5rem;
+        }
+
+        .menu-item+hr {
+            display: none;
+        }
+
+        .hr1 {
+            border: none;
+            border-top: 0.1px solid #6b6666;
+            width: 60%;
+            margin: auto;
+            margin-bottom: 1rem;
+            margin-top: 3.11rem;
+        }
+
+
+
+        .menu-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: white;
+            text-decoration: none;
+        }
+
+        .icon4 {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-bottom: 0.1rem;
+        }
+
+        /* Hide labels initially */
+        .label {
+            position: absolute;
+            left: 60px;
+            /* position text to the right */
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            color: black;
+            /* label color */
+            font-family: Arial, sans-serif;
+            width: max-content;
+        }
+
+        /* Show label when hovering on menu item */
+        .icon4:hover+.label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* =========----------SIDE-BAR END -----------------------------========*/
+
+
+
+
+
+
+        /* ==========--------SUBSCRIBE--------============ */
+
+        .noselect {
+            width: 200px;
+            height: 7.4vh;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: red;
+            border: none;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+            background: #e62222;
+            padding-left: 20px;
+
+        }
+
+        .noselect,
+        .noselect span {
+            transition: 270ms;
+        }
+
+        .noselect .text {
+            transform: translateX(35px);
+            color: white;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 1.5em;
+            font-weight: 200;
+            letter-spacing: 1.5px;
+        }
+
+        .noselect .icon {
+            position: absolute;
+            /* border-left: 1px solid #c41b1b; */
+            transform: translateX(110px);
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 16px;
+        }
+
+        .noselect svg {
+            width: 15px;
+            fill: #eee;
+        }
+
+        .noselect:hover {
+            background: #ff3636;
+        }
+
+        .noselect:hover .text {
+            color: transparent;
+        }
+
+        .noselect:hover .icon {
+            width: 150px;
+            border-left: none;
+            transform: translateX(0);
+        }
+
+        .noselect:focus {
+            outline: none;
+        }
+
+        .noselect:active .icon svg {
+            transform: scale(0.8);
+        }
+
+        .noselect:hover .bell {
+            animation: bellRing 0.9s both;
+        }
+
+        /* bell ringing animation keyframes*/
+        @keyframes bellRing {
+            0% {
+                transform-origin: top;
+            }
+
+            15% {
+                transform: rotateZ(15deg);
+                scale: 1.1;
+            }
+
+            30% {
+                transform: rotateZ(-15deg);
+                scale: 1.15;
+            }
+
+            45% {
+                transform: rotateZ(8deg);
+                scale: 1.2;
+            }
+
+            60% {
+                transform: rotateZ(-8deg);
+                scale: 1.25;
+            }
+
+            75% {
+                transform: rotateZ(5deg);
+                scale: 1.3;
+            }
+
+            100% {
+                transform-origin: top;
+                scale: 1.35;
+            }
+        }
+
+        .noselect:active {
+            transform: scale(0.9);
+        }
+
+
+        /* =========== SUBSCRIBE END ===================== */
+
+        .LOGO {
+            font-size: 1.4rem;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 300;
+            margin-left: 12vh;
+            color: black;
+            letter-spacing: 0.06rem;
+        }
+
+
+        /* Default (desktop) styles are already good */
+
+        /* Tablets (768px and below) */
+        @media (max-width: 768px) {
+            #header {
+                height: 7.5vh;
+                padding: 0 10px;
+            }
+
+            /* .LOGO {
+            margin-left: 0;
+            font-size: 1.2em;
+        } */
+
+            .noselect {
+                width: 160px;
+                height: 7.5vh;
+            }
+
+            .noselect .text {
+                font-size: 1.2em;
+                transform: translateX(20px);
+            }
+
+            .noselect .icon {
+                transform: translateX(90px);
+            }
+
+            .background1 {
+                width: 55px;
+                height: 55px;
+            }
+
+            .menu__icon {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        /* Mobiles (480px and below) */
+        @media (max-width: 480px) {
+            #header {
+                height: auto;
+                justify-content: space-between;
+                padding: 0px 8px;
+            }
+
+            .background1 {
+                width: 45px;
+                height: 45px;
+            }
+
+            .menu__icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            /* .LOGO {
+            flex: 1 1 100%;
+            text-align: center;
+            margin: 5px 0;
+            font-size: 1.1em;
+        } */
+
+            .noselect {
+                width: 120px;
+                height: 55px;
+                /* padding-left: 10px; */
+            }
+
+            .noselect .text {
+                font-size: 1em;
+                transform: translateX(10px);
+            }
+
+            .noselect .icon {
+                transform: translateX(50px);
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+
+
+        /* ==========---------- HEADER END -----------================== */
+
+
+
+        /* --- Flexbox Centering for Main Content --- */
+
+
+
+        .HOME {
+            height: 90vh;
+            width: 55%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        .name {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 3.2em;
+            font-weight: 300;
+        }
+
+        .topic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 200;
+            font-size: 1.4em;
+            margin-left: -50rem;
+        }
+
+        .Line1 {
+            border: none;
+            border-top: 0.5px solid #ccc;
+            margin: 1rem auto;
+            width: 70%;
+            /* margin-left: -20em; */
+            text-align: center;
+        }
+
+
+
+        /* --- Main Container --- */
+        .AI_intro {
+            max-width: 900px;
+            width: 100%;
+            height: 100vh;
+            margin: auto;
+        }
+
+        /* --- Typography --- */
+        h1,
+        h2 {
+            font-weight: 750;
+            /* Extra bold weight */
+            margin-top: 0;
+            /* margin-bottom: 0.75rem; */
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 2rem;
+            letter-spacing: 0.01rem;
+            margin: 2rem 0;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin: 1.5rem 0 1.5rem 0;
+            letter-spacing: 0.04rem;
+        }
+
+        .name {
+            text-transform: capitalize;
+            letter-spacing: 0.1rem;
+        }
+
+        .info {
+            font-size: 1.1rem;
+            line-height: 1.2;
+            margin-top: 0;
+            /* margin-bottom: 0.4rem; */
+            font-weight: 250;
+            font-family: 'Roboto', sans-serif;
+
+        }
+
+        .footer-link a {
+            text-decoration: none;
+            color: #555555;
+            font-size: 0.9rem;
+        }
+
+        /* --- Utility Classes --- */
+        .text-red {
+            color: #d73634;
+            /* A strong, slightly softer red than pure #FF0000 */
+        }
+
+        /* --- Layout Sections --- */
+        .intro-section {
+            margin-bottom: 1.6rem;
+        }
+
+        .columns-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            /* Space between the two columns */
+            margin-bottom: 3rem;
+        }
+
+        /* --- Footer Elements --- */
+        footer {
+            margin-top: 2rem;
+        }
+
+        .Line2 {
+            border: none;
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 1rem auto;
+            width: 30%;
+        }
+
+        .footer-link {
+            text-align: center;
+        }
+
+        .footer-link a span {
+            font-size: 1rem;
+        }
+
+        /* --- Responsive Design for Mobile --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            /* Stack columns on top of each other on smaller screens */
+            .columns-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+
+
+
+
+
+
+        /* ========.  media QUERY FOR MOBILE ========= */
+
+@media (max-width: 550px) {
+
+    BODY{
+        padding-top: 0;
+
+    }
+
+
+    /* ====. CONTENT ========= */
+    .topic {
+        font-size: 1.2em;
+        margin-left: 0;
+        align-self: start;
+    }
+
+    .intro-section h1{
+        font-size: 1.5rem;
+    }
+
+    .column h2{
+        font-size: 1.25rem;
+    }
+    .info {
+        font-size: 1rem;
+    }
+
+
+    
+  /* ===== SIDEBAR ========= */
+
+  .sidebar {
+    width: 69%;
+    border-radius: 0;
+    margin: 0;
+    align-items: start;
+    left: -23.9rem;
+    height: 100vh;
+  }
+
+  #check:checked~.sidebar {
+    left: 0;
+  }
+
+  .menu-item {
+    padding-left: 15px;
+    border: 1px white;
+  }
+
+  .hr1 {
+    border: none;
+    border-top: 0.1px solid #ffffff;
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-top: 1.87rem;
+  }
+
+  .label {
+    opacity: 1;
+    transform: translateX(0px);
+    color: white;
+  }
+
+  .btn_toggle {
+    left: 0;
+  }
+
+  .menu-item+hr {
+    display: block;
+    margin: 0;
+    padding: 0;
+    z-index: 2000;
+    transform: translateX(30px);
+    width: 70%;
+    opacity: 0.36;
+    color: transparent;
+  }
+
+
+
+
+
+  /* ===== HEADER ====== */
+
+  #header {
+    height: auto;
+    justify-content: space-between;
+    width: 100VW;
+    height: 50px;
+    padding: 0;
+    position: sticky;
+    top: 0;
+  }
+
+  .background1 {
+    width: 45px;
+    height: 45px;
+  }
+
+  .menu__icon {
+    width: 24px;
+    height: 24px;
+    margin-top: -30px;
+  }
+
+
+  .LOGO {
+    flex: 1 1 100%;
+    text-align: center;
+    font-size: 1.1em;
+    margin: 0;
+  }
+
+  .noselect {
+    width: 50px;
+    height: 50px;
+    /* padding-left: 10px; */
+  }
+
+  .noselect .text {
+    font-size: 1em;
+    transform: translateX(10px);
+    display: none;
+  }
+
+  .noselect .icon {
+    transform: translateX(-25px);
+    width: 30px;
+    height: 30px;
+  }
+
+  .noselect:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(-85px);
+  }
+
+}
