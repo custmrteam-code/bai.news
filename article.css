@@ -1,0 +1,93 @@
+
+/* article start */
+.main h1 ~ div {
+    display: flex;
+    justify-content: space-between;
+    
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-family: "Circular Std", Montserrat, sans-serif;
+  }
+
+  .author {
+    font-size: 0.76rem;
+    color: #777;
+    margin-top: 0.5rem;
+  }
+
+  figure{
+    width: 95%;
+  }
+
+  figure img {
+    width: inherit;
+    height: auto;
+    object-fit: fill;
+  }
+figcaption {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.5rem;
+  }
+
+    .article-actions a {
+        margin-left: 1rem;
+        text-decoration: none;
+        color: #000;
+        font-size: 0.9rem;
+    }
+
+    .article-actions a img {
+        width: 16px;
+        height: 16px;
+        margin: 0 0 0.3rem 0.4rem;
+        vertical-align: middle;
+    }
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .main h1 + div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+/* content  */
+figure+p {
+    margin-top: 1rem;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #333;
+    text-align: justify;
+  }
+
+.last-hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 2rem 0;
+  }
+
+  .tags {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .article-tags {
+    background-color: #f0f0f0;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #333;
+  }
+    .article-tags:hover {
+        background-color: #e0e0e0;
+    }
+

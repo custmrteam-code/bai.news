@@ -16,12 +16,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const searchPopupContainer = document.getElementById('search-popup-container');
   const filterOptionsContainer = document.getElementById('filter-options-container');
   const searchIcon = searchToggleBtn.querySelector('.search-icon');
-  const filterIcon = searchToggleBtn.querySelector('.filter-icon');
-
+  const filterIcon1 = searchToggleBtn.querySelector('.filter-icon1');
+  const filterIcon2 = searchToggleBtn.querySelector('.filter-icon2');
 
   searchIcon.style.display = 'block';
-  filterIcon.style.display = 'none';
-
+  filterIcon1.style.display = 'none';
+  filterIcon2.style.display = 'none';
 
   if (searchToggleBtn) {
     searchToggleBtn.addEventListener('click', (e) => {
@@ -34,11 +34,16 @@ document.addEventListener('DOMContentLoaded', function () {
         searchPopupContainer.classList.add('active');
         // Swap icons
         searchIcon.style.display = 'none';
-        filterIcon.style.display = 'block';
+        filterIcon1.style.display = 'block';
+        filterIcon2.style.display = 'none';
       } else {
         // --- Toggle Filter Options ---
         // (Search is already active, so the button is the filter button)
         filterOptionsContainer.classList.toggle('visible');
+        searchIcon.style.display = 'none';
+        filterIcon1.style.display = 'none';
+        filterIcon2.style.display = 'block';
+
       }
     });
   }
@@ -52,7 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
       filterOptionsContainer.classList.remove('visible'); // Also hide filters
       // Swap icons back
       searchIcon.style.display = 'block';
-      filterIcon.style.display = 'none';
+      filterIcon1.style.display = 'none';
+      filterIcon2.style.display = 'none';
     }
     // Close Filter Options if clicking outside of them (but inside the search wrapper)
     else if (filterOptionsContainer && filterOptionsContainer.classList.contains('visible') && !filterOptionsContainer.contains(e.target) && e.target !== searchToggleBtn) {
