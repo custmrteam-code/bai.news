@@ -272,7 +272,7 @@ a {
   border-top: 0.1px solid #6b6666;
   width: 60%;
   margin-bottom: 1rem;
-  margin-top: 3.11rem;
+  margin-top: 3.43rem;
 }
 
 
@@ -328,7 +328,7 @@ a {
 
 .noselect {
   width: 200px;
-  height: 7.4vh;
+  height: 7.56vh;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -481,7 +481,6 @@ a {
 @media (max-width: 768px) {
   #header {
     height: 7.5vh;
-    padding: 0 10px;
   }
 
   .LOGO {
@@ -570,11 +569,10 @@ a {
 
 
 .Article {
-  height: 17em;
-  width: 110%;
+  height: max-content;
+  width: 100%;
   display: flex;
-  margin-left: -3em;
-
+  margin-bottom: 1.3rem;
 }
 
 .RIGHT {
@@ -586,6 +584,8 @@ a {
   width: 370px;
   border-radius: 6%;
 }
+
+
 
 .img2 {
   height: 230px;
@@ -692,14 +692,21 @@ h3 {
 
 }
 
-@media(max-width: 1450px) and (min-width: 993px) {
+@media(min-width: 993px) {
+  .info{
+    margin: 0 2rem;
+  }
+}
+
+
+@media(max-width: 1210px) and (min-width: 993px) {
   .main {
     width: 60%;
     margin: auto;
   }
 }
 
-@media(max-width: 1150px) and (min-width: 992px) {
+@media(max-width: 993px) and (min-width: 600px) {
   .main {
     width: 70%;
     margin: auto;
@@ -969,7 +976,7 @@ footer h2 {
 
 /* Left section */
 .footer-left {
-  margin-left: 32rem;
+  margin-left: 12rem;
 }
 
 .footer-left ul {
@@ -1025,7 +1032,7 @@ footer h2 {
   width: 1rem;
   padding: 40px 20px 20px;
   position: absolute;
-  left: 34rem;
+  left: 23vw;
   z-index: 11;
   margin-top: -0.2rem;
   margin-left: 15rem;
@@ -1033,7 +1040,7 @@ footer h2 {
 
 .l2 {
   height: 6rem;
-  left: 68rem;
+  left: 49.5vw;
   margin-top: -1.5rem;
 }
 
@@ -1102,9 +1109,9 @@ footer h2 {
 
 /* Desktop/Laptop (1024px - 1399px) */
 @media (max-width: 1399px) {
-  footer h2 {
+  /* footer h2 {
     margin-left: 4rem;
-  }
+  } */
 
   .footer-left {
     margin-left: 20rem;
@@ -1115,18 +1122,18 @@ footer h2 {
     left: -10rem;
   }
 
-  .vertical-line {
+  /* .vertical-line {
     left: 28rem;
     margin-left: 10rem;
-  }
+  } */
 
-  .l2 {
+  /* .l2 {
     left: 58rem;
-  }
+  } */
 }
 
 /* Tablet Landscape (992px - 1023px) */
-@media (max-width: 1023px) {
+/* @media (max-width: 1023px) {
   footer h2 {
     margin-left: 2rem;
   }
@@ -1152,7 +1159,16 @@ footer h2 {
   .newsletter-input {
     width: 12rem;
   }
-}
+} */
+
+ @media (max-width: 1023px) {
+  .vertical-line {
+    left: 22vw;
+  }
+  .l2 {
+    left: 48vw;
+  }
+    }
 
 /* Tablet Portrait (768px - 991px) */
 @media (max-width: 991px) {
@@ -1161,8 +1177,8 @@ footer h2 {
   }
 
   footer h2 {
-    margin-left: 0;
-    text-align: center;
+    /* margin-left: 0;
+    text-align: l; */
     margin-bottom: 2rem;
   }
 
@@ -1187,7 +1203,6 @@ footer h2 {
 
   .vertical-line {
     display: none;
-    /* Hide vertical separators on smaller screens */
   }
 
   .footer-right {
@@ -1205,7 +1220,7 @@ footer h2 {
 }
 
 /* Mobile Landscape (576px - 767px) */
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
 
   footer h2 {
     font-size: 1rem;
@@ -1245,7 +1260,7 @@ footer h2 {
     font-size: 11px;
     margin-top: 15px;
   }
-}
+} */
 
 
 /* ==========------- FOOTER END -------============ */
@@ -1276,9 +1291,6 @@ footer h2 {
   transition: transform 0.3s ease;
 }
 
-.search-toggle-btn:hover {
-  transform: scale(1.1);
-}
 
 .search-popup-container {
   position: absolute;
@@ -1330,12 +1342,18 @@ footer h2 {
 }
 
 /* --- Filter Icon --- */
-.filter-icon {
+.filter-icon1, .filter-icon2 {
   display: none;
   /* Hidden by default */
-  width: 3.2rem;
-  height: 3.2rem;
-  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: invert(100%);
+}
+
+.filter-icon2{
+  width: 1.48rem;
+  height: 1.48rem;
+
 }
 
 /* --- Filter Tags --- */
@@ -1385,7 +1403,8 @@ footer h2 {
 
 /* Smooth rotation for the search icon */
 .search-icon,
-.filter-icon {
+.filter-icon1,
+.filter-icon2 {
   transition: transform 0.5s ease, opacity 0.5s ease;
   display: inline-block;
 }

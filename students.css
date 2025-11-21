@@ -445,7 +445,6 @@
         @media (max-width: 768px) {
             #header {
                 height: 7.5vh;
-                padding: 0 10px;
             }
 
             /* .LOGO {
@@ -658,10 +657,12 @@
 
         /* --- Responsive Design for Mobile --- */
         @media (max-width: 768px) {
-            body {
-                padding: 1.5rem;
+            .AI_intro{
+                width: 90%;
             }
-
+            .topic{
+                margin-left: 1.6rem;
+            }
             h1 {
                 font-size: 2rem;
             }
@@ -696,7 +697,6 @@
     /* ====. CONTENT ========= */
     .topic {
         font-size: 1.2em;
-        margin-left: 0;
         align-self: start;
     }
 
