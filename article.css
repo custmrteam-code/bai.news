@@ -112,7 +112,9 @@ figure+p {
     margin-top: 2rem;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
-    font-family: "Circular Std", Montserrat, sans-serif;
+    font-family: "Roboto", sans-serif;
+      font-weight: 350;
+
   }
 
   .related-articles {
@@ -128,10 +130,10 @@ figure+p {
   }
 
   .related-articles div h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-top: 0.5rem;
     text-transform: uppercase;
-    font-family: "Circular Std", Montserrat, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 
 /* ============Related Articles end=============== */
