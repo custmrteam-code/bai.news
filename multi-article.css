@@ -1,43 +1,89 @@
 .ma-main {
-    max-width: 75%;
-    margin: 1rem auto;
-    padding: 1rem;
-    margin-top: 2rem;
+    max-width: 50%;
+    margin: 2rem 0;
   }
 
-  .ma-main h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-weight: 400;
+  .Line1{
+    margin-top: 0;
   }
 
-  .articles-container {
-    display: flex;
-    gap: 2rem;
-  }
+.articles-container{
+    margin: 6rem 0;
+}
 
-  .article-card {
-    flex: 1;
-    /* border: 1px solid #ccc; */
-    border-radius: 8px;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-  }
+.article-card{
+    display: block;
+    margin: 3rem 0;
+}
+
+.article-card h3{
+  font-family: "Circular Std", "Montserrat", sans-serif;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 1.27rem;
+}
+
+.date{
+    margin: 0.2rem 0 0.6rem 0;
+}
+
+.date + p{
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+
+}
+
+.article-card + hr{
+        border: none;
+    border-top: 1px solid #ccc;
+
+}
+
+p + a{
+    margin-top: -50rem;
+}
+
+.text-red{
+            color: #d73634;
+}
 
 
-    .article-card img {
-        width: 100%;
-        height: auto;
-    }
-
-    .article-card h3 {
-        font-size: 1.2rem;
-        margin: 0.5rem 1rem;
-    }
-    .article-card p {
-        font-size: 1rem;
-        margin: 0.5rem 1rem 1rem 0rem;
-    }
 /* ============Related Articles End===============*/
+
+
+/* media query */
+
+@media (max-width: 768px) {
+    .ma-main {
+        max-width: 90%;
+        margin: 1rem auto;
+        padding: 1rem;
+        margin-top: 2rem;
+    }
+
+    .articles-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ma-main h2 {
+        font-size: 1.5rem;
+    }
+
+    .article-card h2 {
+        font-size: 1.2rem;
+    }
+}
+
+
+
+
+
+
+
+/* EXTRA */
+.hidden {
+    display: none !important;
+}
