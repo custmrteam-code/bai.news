@@ -10,7 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Search and Filter functionality
+
+
+
+
+  // Search and Filter toggling
   const searchWrapper = document.querySelector('.search-wrapper');
   const searchToggleBtn = document.getElementById('search-toggle-btn');
   const searchPopupContainer = document.getElementById('search-popup-container');
@@ -76,6 +80,9 @@ document.addEventListener('DOMContentLoaded', function () {
     filterOptionsContainer.addEventListener('click', e => e.stopPropagation());
   }
 });
+
+
+
 
 
 // ###############################################################
@@ -231,7 +238,7 @@ document.addEventListener('DOMContentLoaded', updateArticlesFromCSV);
 
 
 
-// ==============================================
+// ====================== SEARCH AND FILTER FUNCTIONALITY ========================
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -299,5 +306,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
 });
