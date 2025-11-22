@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const searchIcon = searchToggleBtn.querySelector('.search-icon');
   const filterIcon1 = searchToggleBtn.querySelector('.filter-icon1');
   const filterIcon2 = searchToggleBtn.querySelector('.filter-icon2');
+  const searchInput = document.getElementById('searchInput');
+
 
   searchIcon.style.display = 'block';
   filterIcon1.style.display = 'none';
@@ -220,3 +222,82 @@ async function updateArticlesFromCSV() {
 
 // Call the function when page loads
 document.addEventListener('DOMContentLoaded', updateArticlesFromCSV);
+
+
+
+
+
+
+
+
+
+// ==============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const searchInput = document.getElementById('searchInput');
+    const filterCheckboxes = document.querySelectorAll('input[name="filter-tags"]');
+    // We select the article cards specifically
+    const articles = document.querySelectorAll('.article-card');
+
+    // ========== SEARCH LISTENER ==========
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            filterContent(searchTerm, getSelectedFilters());
+        });
+    }
+
+    // ========== FILTER LISTENER ==========
+    filterCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+            filterContent(searchTerm, getSelectedFilters());
+        });
+    });
+
+    // ========== HELPER: GET CHECKED BOXES ==========
+    function getSelectedFilters() {
+        const selected = [];
+        filterCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                selected.push(checkbox.value);
+            }
+        });
+        return selected;
+    }
+
+    // ========== CORE LOGIC ==========
+    function filterContent(searchTerm, selectedFilters) {
+        articles.forEach(article => {
+            // Get tags from the new data-tags attribute
+            const tags = article.getAttribute('data-tags') || '';
+            // Get text from title and summary
+            const text = article.textContent.toLowerCase();
+            
+            // Logic: Does it match the search text?
+            const matchesSearch = !searchTerm || text.includes(searchTerm);
+            
+            // Logic: Does it match the selected checkboxes?
+            // If no filters selected, show all. Otherwise, check if tags match.
+            const matchesFilter = selectedFilters.length === 0 || 
+                                selectedFilters.some(filter => tags.includes(filter));
+            
+            // Toggle visibility
+            if (matchesSearch && matchesFilter) {
+                article.classList.remove('hidden');
+                // Handle the HR line if it immediately follows the article
+                if(article.nextElementSibling && article.nextElementSibling.tagName === 'HR') {
+                    article.nextElementSibling.style.display = ''; 
+                }
+            } else {
+                article.classList.add('hidden');
+                // Hide the HR line as well so we don't get double lines
+                if(article.nextElementSibling && article.nextElementSibling.tagName === 'HR') {
+                    article.nextElementSibling.style.display = 'none';
+                }
+            }
+        });
+    }
+
+});

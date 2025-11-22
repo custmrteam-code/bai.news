@@ -546,22 +546,26 @@
             font-weight: 300;
         }
 
+        .HOME + div{
+            max-width: 900px;
+            width: 100%;
+            margin: auto;
+
+        }
+
         .topic {
             font-family: "Roboto", sans-serif;
             font-weight: 200;
             font-size: 1.4em;
-            margin-left: -50rem;
-        }
+            text-align: left;
+            }
 
-        .Line1 {
+
+        .l{
             border: none;
-            border-top: 0.5px solid #ccc;
-            margin: 1rem auto;
-            width: 70%;
-            /* margin-left: -20em; */
-            text-align: center;
+            border-top: 1px solid #ccc;
+            width: 1200px;
         }
-
 
 
         /* --- Main Container --- */
@@ -619,6 +623,15 @@
         .text-red {
             color: #d73634;
             /* A strong, slightly softer red than pure #FF0000 */
+        }
+
+        .text-red1 {
+            color: rgba(222, 50, 50, 0.75);
+            /* A strong, slightly softer red than pure #FF0000 */
+        }
+
+        .text-red1:hover {
+            color: #d73634;
         }
 
         /* --- Layout Sections --- */

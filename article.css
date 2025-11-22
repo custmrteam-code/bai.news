@@ -136,4 +136,21 @@ figure+p {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 
+  @media (max-width: 1210px) {
+    .more-news {
+      width: 70%;
+    }
+  }
+  @media (max-width: 993px) {
+    .more-news {
+      width: 85%;
+    }
+  }
+  @media (max-width: 768px) {
+    .more-news {
+      width: 95%;
+    }  
+  }
+
+
 /* ============Related Articles end=============== */

@@ -746,13 +746,13 @@ h3 {
 
 .link1 {
   text-decoration: none;
-  color: rgba(205, 69, 69, 0.645);
+  color: rgb(79, 30, 30);
   font-weight: 300;
   font-family: "Roboto", sans-serif;
 }
 
 .link1:hover {
-  color: rgb(223, 20, 20);
+  color: rgb(223, 8, 8);;
 }
 
 
