@@ -73,12 +73,17 @@
         <!-- Multi article  -->
     <main class="ma-main">
 
-        <p class="topic">Latest Articles</p>
+        <p class="topic">Latest Articles <!-- (<span id="page-indicator">1</span>) --></p>
         <hr class="Line1">
 
-        <section class="articles-container">
+        <section class="articles-container" id="articles-list">
 
-            <a class="article-card" href="index.html" data-tags="tech india">
+            <!-- 
+               You can leave this empty! 
+               The JS (data.js + app.js) will automatically fill this space with your news.
+            -->
+
+            <!-- <a class="article-card" href="index.html" data-tags="tech india">
                 <h3 class="article-title">The Rise of AI: <span class="text-red">Transforming Industries</span> and Daily Life</h3>
                 <p class="date">8 AUG 2025</p>
                 <p class="article-summary">Artificial Intelligence (AI) is revolutionizing various sectors, from healthcare to finance, enhancing efficiency and creating new opportunities.</p>
@@ -115,11 +120,30 @@
                 <p class="date">8 AUG 2025</p>
                 <p class="article-summary">Discover how blockchain technology is being utilized in various industries beyond cryptocurrency, including supply chain management and healthcare.</p>
             </a>
-
+ -->
 
         </section>
 
     </main>
+
+
+
+    <!-- Pagination Container -->
+    <div class="pagination-bar">
+        <div class="pagination-wrapper">
+            
+            <button onclick="changePage('prev')" class="arrow-btn" aria-label="Previous Page">
+                <svg viewBox="0 0 24 24"><path d="M2 12l20 10V2z"/></svg>
+            </button>
+
+            <div id="pages-container"></div>
+
+            <button onclick="changePage('next')" class="arrow-btn" aria-label="Next Page">
+                <svg viewBox="0 0 24 24"><path d="M22 12l-20 10V2z"/></svg>
+            </button>
+
+        </div>
+    </div>
 
 
 
@@ -217,8 +241,14 @@
     </div>
 
 
-
     <script src="app.js"></script>
+
+
+    <!-- IMPORT DATA FIRST -->
+    <script src="./Article/multi-article-data.js"></script>
+    
+    <!-- IMPORT LOGIC SECOND -->
+    <script src="multi-article.js"></script>
 
 </body>
 </html>
