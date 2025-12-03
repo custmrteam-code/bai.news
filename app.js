@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.classList.toggle('active');
     });
   }
+});
 
 
 
@@ -16,69 +17,104 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ============= Search and Filter toggling ==============
 
-  const searchWrapper = document.querySelector('.search-wrapper');
-  const searchToggleBtn = document.getElementById('search-toggle-btn');
-  const searchPopupContainer = document.getElementById('search-popup-container');
-  const filterOptionsContainer = document.getElementById('filter-options-container');
-  const searchIcon = searchToggleBtn.querySelector('.search-icon');
-  const filterIcon1 = searchToggleBtn.querySelector('.filter-icon1');
-  const filterIcon2 = searchToggleBtn.querySelector('.filter-icon2');
-  const searchInput = document.getElementById('searchInput');
+document.addEventListener('DOMContentLoaded', () => {
 
+    // 1. SELECT ELEMENTS
+    const searchWrapper = document.querySelector('.search-wrapper');
+    const searchToggleBtn = document.getElementById('search-toggle-btn');
+    const searchPopupContainer = document.getElementById('search-popup-container');
+    const filterOptionsContainer = document.getElementById('filter-options-container');
 
-  searchIcon.style.display = 'block';
-  filterIcon1.style.display = 'none';
-  filterIcon2.style.display = 'none';
+    // Select the specific images inside the button
+    const imgSearch = searchToggleBtn.querySelector('.search-icon');    // Image 1
+    const imgFilterEmpty = searchToggleBtn.querySelector('.filter-icon1'); // Image 2
+    const imgFilterFilled = searchToggleBtn.querySelector('.filter-icon2'); // Image 3
 
-  if (searchToggleBtn) {
-    searchToggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isSearchActive = searchWrapper.classList.contains('active');
+    // 2. INITIALIZE COUNTER
+    let clickCount = 0;
 
-      if (!isSearchActive) {
-        // --- Open Search Bar ---
-        searchWrapper.classList.add('active');
-        searchPopupContainer.classList.add('active');
-        // Swap icons
-        searchIcon.style.display = 'none';
-        filterIcon1.style.display = 'block';
-        filterIcon2.style.display = 'none';
-      } else {
-        // --- Toggle Filter Options ---
-        // (Search is already active, so the button is the filter button)
-        filterOptionsContainer.classList.toggle('visible');
-        searchIcon.style.display = 'none';
-        filterIcon1.style.display = 'none';
-        filterIcon2.style.display = 'block';
+    // Helper to safely swap images
+    function updateImages(showImage) {
+        imgSearch.style.display = 'none';
+        imgFilterEmpty.style.display = 'none';
+        imgFilterFilled.style.display = 'none';
+        
+        if(showImage === 1) imgSearch.style.display = 'block';
+        if(showImage === 2) imgFilterEmpty.style.display = 'block';
+        if(showImage === 3) imgFilterFilled.style.display = 'block';
+    }
 
-      }
+    // Set initial state
+    updateImages(1);
+
+    if (searchToggleBtn) {
+        searchToggleBtn.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            e.stopPropagation();
+
+            // Increment counter on every click
+            clickCount++;
+
+            // --- CLICK 1 (Start Search) ---
+            if (clickCount === 1) {
+                // Open Search Wrapper
+                searchWrapper.classList.add('active');
+                searchPopupContainer.classList.add('active');
+                // Ensure filter is closed
+                filterOptionsContainer.classList.remove('visible');
+                
+                // Show Image 2
+                updateImages(2);
+            }
+            // --- LOOPING CLICKS (2, 3, 4, 5...) ---
+            else {
+                if (clickCount % 2 === 0) {
+                    // EVEN NUMBERS (2, 4, 6...): Open Filter -> Show Image 3
+                    filterOptionsContainer.classList.add('visible');
+                    updateImages(3);
+                } else {
+                    // ODD NUMBERS (3, 5, 7...): Close Filter -> Show Image 2
+                    filterOptionsContainer.classList.remove('visible');
+                    updateImages(2);
+                }
+            }
+        });
+    }
+
+    // --- CLICK OUTSIDE LOGIC (RESET COUNTER) ---
+    document.addEventListener('click', (e) => {
+        // Only run if search is currently active
+        if (!searchWrapper.classList.contains('active')) return;
+
+        // 1. Clicked Completely Outside
+        if (!searchWrapper.contains(e.target)) {
+            // Close Everything
+            searchWrapper.classList.remove('active');
+            searchPopupContainer.classList.remove('active');
+            filterOptionsContainer.classList.remove('visible');
+            
+            // RESET COUNTER TO 0
+            clickCount = 0;
+            updateImages(1);
+        }
+        
+        // 2. Clicked Inside Search Wrapper but Outside Filter (e.g. Input box)
+        // We need to act as if we are in the "Odd" state (Just search open, filter closed)
+        else if (!filterOptionsContainer.contains(e.target) && e.target !== searchToggleBtn) {
+            if (filterOptionsContainer.classList.contains('visible')) {
+                filterOptionsContainer.classList.remove('visible');
+                
+                // RESET COUNTER TO 1 (So next click becomes 2/Even/Open Filter)
+                clickCount = 1; 
+                updateImages(2);
+            }
+        }
     });
-  }
-  // --- Global Click Listener to Close Popups ---
-  document.addEventListener('click', (e) => {
-    // Close Search Bar if clicking outside
-    if (searchWrapper && searchWrapper.classList.contains('active') && !searchWrapper.contains(e.target)) {
-      searchWrapper.classList.remove('active');
-      searchPopupContainer.classList.remove('active');
-      filterOptionsContainer.classList.remove('visible'); // Also hide filters
-      // Swap icons back
-      searchIcon.style.display = 'block';
-      filterIcon1.style.display = 'none';
-      filterIcon2.style.display = 'none';
-    }
-    // Close Filter Options if clicking outside of them (but inside the search wrapper)
-    else if (filterOptionsContainer && filterOptionsContainer.classList.contains('visible') && !filterOptionsContainer.contains(e.target) && e.target !== searchToggleBtn) {
-      filterOptionsContainer.classList.remove('visible');
-    }
-  });
 
-  // Prevent popups from closing when clicking inside them
-  if (searchPopupContainer) {
-    searchPopupContainer.addEventListener('click', e => e.stopPropagation());
-  }
-  if (filterOptionsContainer) {
-    filterOptionsContainer.addEventListener('click', e => e.stopPropagation());
-  }
+    // Prevent clicks inside containers from closing them
+    if (searchPopupContainer) searchPopupContainer.addEventListener('click', e => e.stopPropagation());
+    if (filterOptionsContainer) filterOptionsContainer.addEventListener('click', e => e.stopPropagation());
+
 });
 
 
@@ -174,13 +210,22 @@ if (shareLink && shareIcon) {
         event.preventDefault(); // Prevent page jump from href="#"
 
         // 2. Check the current source to decide which one to swap to
-        // We use .includes() because the browser might expand the src to a full absolute URL.
         if (shareIcon.src.includes("unfilled")) {
             // If it's currently unfilled, change it to filled
             shareIcon.src = filledIconPath;
         } else {
             // If it's currently filled, toggle it back to unfilled
             shareIcon.src = unfilledIconPath;
+        }
+    });
+    // For outside click to reset images
+    document.addEventListener('click', function(event) {
+        // Check if the thing clicked is NOT the shareLink and NOT inside the shareLink
+        if (!shareLink.contains(event.target)) {
+            // If the icon is currently filled, reset it to unfilled
+            if (shareIcon.src.includes("filled")) {
+                shareIcon.src = unfilledIconPath;
+            }
         }
     });
 } else {
