@@ -2,7 +2,7 @@
 // 0. FIREBASE CONFIGURATION & IMPORTS
 // ==========================================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider, TwitterAuthProvider, signInWithPopup, onAuthStateChanged, signOut, signInAnonymously, updateProfile} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut, signInAnonymously, updateProfile} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC_Q3p2dyKwUOUv5O-gIMNI8vv6RrD0IZY",
@@ -17,7 +17,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-const twitterProvider = new TwitterAuthProvider();
 
 // ==========================================
 // AUTH LOGIC (Login & UI Updates)
@@ -54,37 +53,6 @@ function handleGoogleLogin() {
             alert("Login Failed: " + error.message);
         });
 }
-
-    // for TWITTER
-    function handleTwitterLogin() {
-        signInWithPopup(auth, twitterProvider)
-            .then((result) => {
-                const user = result.user;
-                console.log("Twitter Login Success:", user.displayName);
-                
-                // 1. Close Popup
-                const overlay = document.getElementById('popupOverlay');
-                if(overlay) overlay.classList.remove('active');
-
-                // 2. LocalStorage handles the UI automatically via onAuthStateChanged
-                // (But you can force an update here if you want extra speed)
-            })
-            .catch((error) => {
-                console.error("Twitter Login Error:", error);
-                alert("Twitter Login Failed: " + error.message);
-            });
-    }
-
-    document.addEventListener('click', (e) => {
-        // Google
-        if (e.target.closest('#google-login-btn')) {
-            handleGoogleLogin();
-        }
-        // Twitter / X
-        if (e.target.closest('#twitter-login-btn')) {
-            handleTwitterLogin();
-        }
-    });
 
 // 3. CHECK LOGIN STATE (Runs on page load)
 onAuthStateChanged(auth, (user) => {
@@ -444,7 +412,7 @@ function initPopupLogic() {
         overlay.classList.remove('active');
         
         // Reset Views
-        if(viewOptions) viewOptions.classList.remove('hidden');
+        if(viewOptions) viewOptions.classList.add('hidden');
         if(viewEmail) viewEmail.classList.add('hidden');
         if(viewOtp) viewOtp.classList.add('hidden');
 
