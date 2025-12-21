@@ -8,16 +8,94 @@
 
   h1 {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 4.5rem;
+    margin-bottom: 0;
     text-transform: uppercase;
     font-family: "Circular Std", Montserrat, sans-serif;
   }
 
-  .author {
-    font-size: 0.76rem;
-    color: #777;
-    margin-top: 0.5rem;
+  .article-meta{
+    display: flex;
+    align-items: center;
   }
+
+  .date{
+    display: inline-block;
+    margin: 0;
+  }
+
+  .date + hr{
+    margin: 20px 0;
+  }
+
+/* Container for the profile row */
+.author-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+    object-fit: cover; /* Ensures image doesn't stretch */
+    border: 1px solid #969494; 
+    filter: grayscale(100%);
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+}
+
+.author-name {
+    font-size: 1rem;
+    font-weight: 350;
+    color: #333;
+}
+
+.follow-btn {
+    background-color: transparent;
+    border: 0px solid #aaa; 
+    border-radius: 20px; /* Pill shape */
+    padding: 4px 14px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.follow-btn:hover {
+    background-color: #e95454;
+    color: white;
+    /* border-color: #711a1a; */
+        border: 0px solid #aaa; 
+
+}
+
+/* Default Style (Unfollowed) */
+.follow-btn {
+    padding: 6px 16px;
+    border: 1px solid #000;
+    background: transparent;
+    color: #000;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+/* Active Style (Followed) */
+.follow-btn.following {
+    background-color: #000;
+    color: #fff;
+    content: "Followed"; /* Optional helper */
+}
 
   figure{
     width: 100%;
@@ -35,6 +113,9 @@ figcaption {
     margin-top: 0.5rem;
   }
 
+  .article-actions{
+    display: inline-block;
+  }
     .article-actions a {
         margin-left: 1rem;
         text-decoration: none;

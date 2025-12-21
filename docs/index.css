@@ -1,0 +1,809 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0px;
+}
+
+/* This targets all elements and makes the tap highlight
+    color completely transparent, effectively removing it. */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* FONT FAMILY */
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 150;
+  letter-spacing: 0.8px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: 300;
+  font-family: "Roboto", sans-serif;
+}
+
+
+
+
+.HOME {
+  height: 92vh;
+  width: 55%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.name {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 3.2em;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+#team {
+  color: rgb(181, 178, 178);
+  margin-top: -35px;
+  font-size: 1.15em;
+}
+
+.topic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+  font-size: 1.4em;
+}
+
+.main {
+  width: 50%;
+}
+
+.Line1 {
+  position: absolute;
+  border: none;
+  border-top: 0.5px solid #ccc;
+  width: 70vw;
+  left: 15vw;
+  /* margin: 10px auto; */
+}
+
+
+.Article {
+  height: 17em;
+  width: 110%;
+  display: flex;
+  margin-left: -3em;
+
+}
+
+.RIGHT {
+  flex-direction: row-reverse;
+}
+
+.img {
+  height: 220px;
+  width: 370px;
+  border-radius: 6%;
+}
+
+.img2 {
+  height: 230px;
+}
+
+h3 {
+  font-family: "Circular Std", "Montserrat", sans-serif;
+}
+
+.date {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: rgb(188, 3, 3);
+  font-weight: 390;
+  margin-top: -16px;
+  font-size: 85%;
+}
+
+
+.info1 {
+  padding: 10px;
+  width: inherit;
+}
+
+.info2 {
+  padding: 10px;
+  text-align: right;
+  width: inherit;
+
+}
+
+
+.PAGE {
+  height: none;
+  width: 100%;
+}
+/* =========================article responsive=========== */
+
+@media (max-width: 992px) {
+  .Article {
+    width: 100%;
+    margin-left: 0;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+
+  }
+
+  .img {
+    width: 300px;
+    height: auto;
+  }
+
+  .RIGHT {
+    flex-direction: column;
+  }
+
+  .info1,
+  .info2 {
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  .img {
+    width: 90%;
+    height: auto;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .Article {
+    width: 100%;
+    margin-left: 0;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+
+  }
+
+  .img {
+    width: 300px;
+    height: auto;
+  }
+
+  .RIGHT {
+    flex-direction: column;
+  }
+
+  .info1,
+  .info2 {
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  .img {
+    width: 90%;
+    height: auto;
+  }
+
+}
+
+@media(min-width: 993px) {
+  .info{
+    margin: 0 2rem;
+  }
+}
+
+
+@media(max-width: 1210px) and (min-width: 993px) {
+  .main {
+    width: 60%;
+    margin: auto;
+  }
+}
+
+@media(max-width: 993px) and (min-width: 600px) {
+  .main {
+    width: 70%;
+    margin: auto;
+  }
+}
+
+/* =========================article responsive END=========== */
+
+.line-with-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: red;
+  font-size: 1.2rem;
+}
+
+.line-with-text::before,
+.line-with-text::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ccc;
+  /* line color */
+  margin: 0 1rem;
+  /* space between text and lines */
+}
+
+.line2 {
+  width: 60%;
+  margin: auto;
+}
+
+.line3 {
+  width: 40%;
+  margin: auto;
+  margin-bottom: 20px;
+  border: none;
+  border-top: 1.4px solid #ccc;
+}
+
+.link1 {
+  text-decoration: none;
+  color: rgb(79, 30, 30);
+  font-weight: 300;
+  font-family: "Roboto", sans-serif;
+}
+
+.link1:hover {
+  color: rgb(223, 8, 8);;
+}
+
+
+
+/*=================== TIMELINE CSS from style1.css ================== */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 2rem 0;
+  padding-left: 8rem;
+  /* space for time column */
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8rem;
+  /* line position between time and content */
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #ccc;
+  /* line color */
+}
+
+.timeline-item {
+  display: flex;
+  /* margin-bottom: 2rem; */
+  position: relative;
+}
+
+.time {
+  position: absolute;
+  left: -8rem;
+  /* place on left side */
+  width: 6rem;
+  height: 100%;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #333;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.news-card {
+  max-width: 600px;
+}
+
+.news-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 350;
+}
+
+.news-card p {
+  margin: 0.3rem 0;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+}
+
+/* hover news style======= */
+.news-card {
+  /* border-bottom: 1px solid #ddd; */
+  padding: 1rem 0;
+  padding-left: 80px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  /* background-color: yellowgreen; */
+}
+
+
+.details {
+  max-height: 0;
+  /* hidden initially */
+  overflow: hidden;
+  /* hide content */
+  opacity: 0;
+  /* invisible */
+  transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  /* 2. Add scrollbar only when content overflows vertically */
+  overflow-y: auto;
+  /* --- Add this to hide the scrollbar --- */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scrollable-box::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, and Opera */
+}
+
+.news-card:hover .details {
+  max-height: 200px;
+  /* enough to show the content */
+  opacity: 1;
+}
+
+.news-card:hover {
+  border-left: 1.5px solid black;
+}
+
+/* =============---------Highlights START---------=========== */
+
+.highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* Two columns on large screens */
+  gap: 3rem;
+  margin: auto;
+  margin-top: 3rem;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  line-height: 1.6;
+}
+
+.right {
+  margin-top: 5%;
+}
+
+.column h1 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin: 2rem 0 3rem;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: -1px;
+}
+
+.column .item {
+  margin-bottom: 1rem;
+}
+
+.column .item h2 {
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.column .item p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.date1 {
+  color: #d44;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  margin-top: 1.35rem;
+}
+
+
+/* 📱 Responsive for small screens */
+@media (max-width: 993px) {
+  .highlights {
+    grid-template-columns: 1fr;
+    /* Stack in one column */
+    gap: 0;
+  }
+
+  .date1 {
+    text-align: left;
+    /* Align date to left on small screens */
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .column h1 {
+    font-size: 1.5rem;
+  }
+
+  .right {
+    margin-top: 0%;
+  }
+
+  .left {
+    margin-bottom: 0%;
+  }
+}
+
+/* ===========-------Highlights END-------=========== */
+
+
+
+
+
+
+/* --- Search Button and Popup --- */
+
+.search-wrapper {
+  position: fixed;
+  bottom: 2.4rem;
+  right: 3rem;
+  z-index: 100;
+}
+
+.search-toggle-btn {
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+
+.search-popup-container {
+  position: absolute;
+  bottom: 5px;
+  right: 70px;
+  width: 0;
+  height: 50px;
+  background-color: rgb(222, 222, 222);
+  border-radius: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.search-popup-container.active {
+  width: 300px;
+  opacity: 1;
+  visibility: visible;
+  padding: 0 1rem;
+}
+
+.search-toggle-btn:active .search-icon {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.search-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* --- Filter Icon --- */
+.filter-icon1, .filter-icon2 {
+  display: none;
+  /* Hidden by default */
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: invert(100%);
+}
+
+.filter-icon2{
+  width: 1.48rem;
+  height: 1.48rem;
+
+}
+
+/* --- Filter Tags --- */
+.filter-options-container {
+  position: absolute;
+  bottom: 70px;
+  /* Position above the search button */
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  display: none;
+  /* Hidden by default */
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 250px;
+}
+
+.filter-options-container.visible {
+  display: flex;
+  /* Show the container */
+}
+
+.filter-tag input[type="checkbox"] {
+  display: none;
+  /* Hide the actual checkbox */
+}
+
+.filter-tag label {
+  display: block;
+  padding: 6px 12px;
+  background-color: #f0f0f0;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  user-select: none;
+}
+
+.filter-tag input[type="checkbox"]:checked+label {
+  background-color: #e62222;
+  /* Red color for selected tag */
+  color: white;
+}
+
+/* ///////////////// */
+
+/* Smooth rotation for the search icon */
+.search-icon,
+.filter-icon1,
+.filter-icon2 {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  display: inline-block;
+}
+
+/* Rotate out animation for hiding the search icon */
+.rotate-out {
+  transform: rotate(360deg) scale(0);
+  opacity: 0;
+}
+
+/* Rotate in animation for showing the filter icon */
+.rotate-in {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+
+
+/* ========================== */
+
+
+
+
+/* ======. MEDIA QUERY FOR MOBILE ====== */
+
+
+@media (max-width: 550px) {
+
+  .link1 {
+    font-size: 0.98rem;
+  }
+
+  .Line1 {
+    width: 100vw;
+    left: 0;
+  }
+
+  .topic {
+    font-size: 0.95rem;
+  }
+
+  .HOME {
+    height: 93vh;
+  }
+
+
+
+  p {
+    font-weight: 300;
+  }
+
+
+
+
+
+
+
+
+
+  /* == Search Button and Popup == */
+  .search-wrapper {
+    bottom: 1rem;
+    right: 1.2rem;
+  }
+
+  .search-toggle-btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .search-popup-container {
+    bottom: 5px;
+    right: 60px;
+    height: 43px;
+  }
+
+  .filter-options-container {
+    bottom: 60px;
+    right: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    padding: 8px;
+    width: max-content;
+  }
+
+  .filter-tag label {
+    padding: 3px 7px;
+    font-size: 0.85rem;
+  }
+
+  .search-popup-container.active {
+    min-width: 65vw;
+    width: auto;
+  }
+
+
+
+  /* page width adjustments */
+  .main {
+    width: 90%;
+    overflow-wrap: break-word;
+  }
+
+
+  /* LATEST NEWS PAGE */
+
+  /* news timeline hover */
+  .news-card:focus .details {
+    max-height: max-content;
+    /* enough to show the content */
+    opacity: 1;
+  }
+
+  .news-card:focus {
+    border-left: 1.5px solid black;
+  }
+
+  .timeline {
+    padding-left: 6.5rem;
+  }
+
+  .timeline::before {
+    left: 6.5rem;
+  }
+
+  .news-card h3 {
+    font-size: 1rem;
+  }
+
+  .time {
+    left: -7rem;
+    width: 5rem;
+    font-size: 1rem;
+  }
+
+  .details em {
+    /* gvuyuhi */
+    font-size: 0.86rem;
+    line-height: 0.1px;
+    letter-spacing: 0.1px;
+  }
+
+  .info p {
+    font-size: 0.9rem;
+  }
+
+
+  /* feature page */
+  .img {
+    width: 100%;
+  }
+
+  figure {
+    width: 100%;
+    margin: 0;
+  }
+
+  .info1,
+  .info2 {
+    text-align: left;
+    margin-top: -25px;
+  }
+
+  .news-card {
+    padding-left: 20px;
+  }
+
+  .line3 {
+    margin: 30px 100px;
+  }
+
+  .info h3 {
+    font-size: 16px;
+  }
+
+  .date+p {
+    font-size: 0.8rem;
+  }
+
+  .date {
+    font-size: 0.77rem;
+  }
+
+  .img {
+    border-radius: 10px;
+  }
+
+
+
+
+  /* TOP NEWS PAGE */
+
+  .highlights {
+    margin: 1rem;
+    gap: 1.5rem;
+  }
+
+  .column h1 {
+    font-size: 1.3rem;
+  }
+
+  .column .item h2 {
+    font-size: 0.9rem;
+
+  }
+
+  .column .item p {
+    font-size: 0.9rem;
+    line-height: 17px;
+    letter-spacing: 0.5px;
+  }
+
+  .column .item {
+    margin-bottom: 0;
+  }
+
+
+}
+

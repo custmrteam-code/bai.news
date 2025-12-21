@@ -1,7 +1,7 @@
 // --- CONFIGURATION ---
-const itemsPerPage = 8; 
+const itemsPerPage = 8;
 let currentPage = 1;
-let allArticles = []; 
+let allArticles = [];
 let totalPages = 0;
 
 // --- MAIN APP LOGIC ---
@@ -14,10 +14,10 @@ function init() {
 
     // 2. Load data from the external data.js file
     allArticles = articleDatabase;
-    
+
     // 3. Calculate pages
     totalPages = Math.ceil(allArticles.length / itemsPerPage);
-    
+
     // 4. Render
     renderContent();
 }
@@ -26,7 +26,7 @@ function renderContent() {
     const articlesContainer = document.getElementById('articles-list');
     const pagesContainer = document.getElementById('pages-container');
     const pageIndicator = document.getElementById('page-indicator');
-    
+
     if (!articlesContainer) return;
 
     // A. Filter articles for current page
@@ -39,7 +39,7 @@ function renderContent() {
         articlesContainer.innerHTML = '<p style="text-align:center; color:#888;">No articles found.</p>';
     } else {
         articlesContainer.innerHTML = visibleArticles.map((article, index) => `
-            <a class="article-card" href="index.html" data-tags="${article.tags}">
+            <a class="article-card" href="../docs/index.html" data-tags="${article.tags}">
                 <h3 class="article-title">${article.title}</h3>
                 <p class="date">${article.date}</p>
                 <p class="article-summary">${article.summary}</p>

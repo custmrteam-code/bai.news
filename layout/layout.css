@@ -1,40 +1,21 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 0px;
-}
+/* Extracted Styles for Header, Sidebar, Subscribe Button, and Footer */
 
-/* This targets all elements and makes the tap highlight
-    color completely transparent, effectively removing it. */
-* {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* FONT FAMILY */
-p {
-  font-family: "Roboto", sans-serif;
-  font-weight: 150;
-  letter-spacing: 0.8px;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-  font-weight: 300;
-  font-family: "Roboto", sans-serif;
+#global-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100vw;
 }
 
 #header {
   background-color: rgba(255, 255, 255, 0.487);
   opacity: 0.95;
-  position: sticky;
-  z-index: 2;
-  top: 0;
+  /* position: sticky; REMOVED */
+  /* z-index: 2; REMOVED */
+  /* top: 0; REMOVED */
   box-shadow: 0 0 1px 0;
   backdrop-filter: blur(20px);
-  width: 100%;
+  width: 100vw;
   height: 67px;
   display: flex;
   justify-content: space-between;
@@ -464,6 +445,20 @@ a {
 }
 
 
+/* 1. Hide the button by default so no one sees the 'wrong' color */
+#openPopupBtn {
+    visibility: hidden; 
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Smooth fade-in */
+}
+
+/* 2. We will add this class via JS when Firebase is ready */
+#openPopupBtn.auth-ready {
+    visibility: visible;
+    opacity: 1;
+}
+
+
 /* =========== SUBSCRIBE END ===================== */
 
 .LOGO {
@@ -525,425 +520,6 @@ a {
 
 /* ==========---------- HEADER END -----------================== */
 
-
-.HOME {
-  height: 90vh;
-  width: 55%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-
-.name {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 3.2em;
-  font-weight: 300;
-}
-
-#team {
-  color: rgb(181, 178, 178);
-  margin-top: -35px;
-  font-size: 1.15em;
-}
-
-.topic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 200;
-  font-size: 1.4em;
-}
-
-.main {
-  width: 50%;
-}
-
-.Line1 {
-  position: absolute;
-  border: none;
-  border-top: 0.5px solid #ccc;
-  width: 70vw;
-  left: 15vw;
-  /* margin: 10px auto; */
-}
-
-
-.Article {
-  height: 17em;
-  width: 110%;
-  display: flex;
-  margin-left: -3em;
-
-}
-
-.RIGHT {
-  flex-direction: row-reverse;
-}
-
-.img {
-  height: 220px;
-  width: 370px;
-  border-radius: 6%;
-}
-
-.img2 {
-  height: 230px;
-}
-
-h3 {
-  font-family: "Circular Std", "Montserrat", sans-serif;
-}
-
-.date {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: rgb(188, 3, 3);
-  font-weight: 390;
-  margin-top: -16px;
-  font-size: 85%;
-}
-
-
-.info1 {
-  padding: 10px;
-  width: inherit;
-}
-
-.info2 {
-  padding: 10px;
-  text-align: right;
-  width: inherit;
-
-}
-
-
-.PAGE {
-  height: none;
-  width: 100%;
-}
-/* =========================article responsive=========== */
-
-@media (max-width: 992px) {
-  .Article {
-    width: 100%;
-    margin-left: 0;
-    height: auto;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 1rem;
-
-  }
-
-  .img {
-    width: 300px;
-    height: auto;
-  }
-
-  .RIGHT {
-    flex-direction: column;
-  }
-
-  .info1,
-  .info2 {
-    text-align: center;
-    padding: 0 15px;
-  }
-
-  .img {
-    width: 90%;
-    height: auto;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .Article {
-    width: 100%;
-    margin-left: 0;
-    height: auto;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 1rem;
-
-  }
-
-  .img {
-    width: 300px;
-    height: auto;
-  }
-
-  .RIGHT {
-    flex-direction: column;
-  }
-
-  .info1,
-  .info2 {
-    text-align: center;
-    padding: 0 15px;
-  }
-
-  .img {
-    width: 90%;
-    height: auto;
-  }
-
-}
-
-@media(min-width: 993px) {
-  .info{
-    margin: 0 2rem;
-  }
-}
-
-
-@media(max-width: 1210px) and (min-width: 993px) {
-  .main {
-    width: 60%;
-    margin: auto;
-  }
-}
-
-@media(max-width: 993px) and (min-width: 600px) {
-  .main {
-    width: 70%;
-    margin: auto;
-  }
-}
-
-/* =========================article responsive END=========== */
-
-.line-with-text {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: red;
-  font-size: 1.2rem;
-}
-
-.line-with-text::before,
-.line-with-text::after {
-  content: "";
-  flex: 1;
-  border-bottom: 1px solid #ccc;
-  /* line color */
-  margin: 0 1rem;
-  /* space between text and lines */
-}
-
-.line2 {
-  width: 60%;
-  margin: auto;
-}
-
-.line3 {
-  width: 40%;
-  margin: auto;
-  margin-bottom: 20px;
-  border: none;
-  border-top: 1.4px solid #ccc;
-}
-
-.link1 {
-  text-decoration: none;
-  color: rgb(79, 30, 30);
-  font-weight: 300;
-  font-family: "Roboto", sans-serif;
-}
-
-.link1:hover {
-  color: rgb(223, 8, 8);;
-}
-
-
-
-/*=================== TIMELINE CSS from style1.css ================== */
-
-.timeline {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin: 2rem 0;
-  padding-left: 8rem;
-  /* space for time column */
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 8rem;
-  /* line position between time and content */
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: #ccc;
-  /* line color */
-}
-
-.timeline-item {
-  display: flex;
-  /* margin-bottom: 2rem; */
-  position: relative;
-}
-
-.time {
-  position: absolute;
-  left: -8rem;
-  /* place on left side */
-  width: 6rem;
-  height: 100%;
-  text-align: center;
-  font-weight: 400;
-  font-size: 1.3rem;
-  color: #333;
-  margin-top: 1rem;
-  align-items: center;
-}
-
-.news-card {
-  max-width: 600px;
-}
-
-.news-card h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.2rem;
-  font-weight: 350;
-}
-
-.news-card p {
-  margin: 0.3rem 0;
-  color: #555;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  letter-spacing: 0.5px;
-}
-
-/* hover news style======= */
-.news-card {
-  /* border-bottom: 1px solid #ddd; */
-  padding: 1rem 0;
-  padding-left: 80px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  /* background-color: yellowgreen; */
-}
-
-
-.details {
-  max-height: 0;
-  /* hidden initially */
-  overflow: hidden;
-  /* hide content */
-  opacity: 0;
-  /* invisible */
-  transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
-  /* 2. Add scrollbar only when content overflows vertically */
-  overflow-y: auto;
-  /* --- Add this to hide the scrollbar --- */
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-.scrollable-box::-webkit-scrollbar {
-  display: none;
-  /* Chrome, Safari, and Opera */
-}
-
-.news-card:hover .details {
-  max-height: 200px;
-  /* enough to show the content */
-  opacity: 1;
-}
-
-.news-card:hover {
-  border-left: 1.5px solid black;
-}
-
-/* =============---------Highlights START---------=========== */
-
-.highlights {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  /* Two columns on large screens */
-  gap: 3rem;
-  margin: auto;
-  margin-top: 3rem;
-  font-family: Arial, sans-serif;
-  background: #fff;
-  line-height: 1.6;
-}
-
-.right {
-  margin-top: 5%;
-}
-
-.column h1 {
-  font-size: 1.8rem;
-  font-weight: 900;
-  margin: 2rem 0 3rem;
-  font-family: Arial, Helvetica, sans-serif;
-  letter-spacing: -1px;
-}
-
-.column .item {
-  margin-bottom: 1rem;
-}
-
-.column .item h2 {
-  font-size: 1rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  margin-bottom: 0.2rem;
-}
-
-.column .item p {
-  margin: 0;
-  font-size: 0.95rem;
-}
-
-.date1 {
-  color: #d44;
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  font-weight: 500;
-  margin-top: 1.35rem;
-}
-
-
-/* 📱 Responsive for small screens */
-@media (max-width: 993px) {
-  .highlights {
-    grid-template-columns: 1fr;
-    /* Stack in one column */
-    gap: 0;
-  }
-
-  .date1 {
-    text-align: left;
-    /* Align date to left on small screens */
-    margin-top: 1rem;
-    display: none;
-  }
-
-  .column h1 {
-    font-size: 1.5rem;
-  }
-
-  .right {
-    margin-top: 0%;
-  }
-
-  .left {
-    margin-bottom: 0%;
-  }
-}
-
-/* ===========-------Highlights END-------=========== */
-
-
-
 /* ==========------- FOOTER START -------============ */
 
 footer {
@@ -953,7 +529,7 @@ footer {
   font-family: Arial, sans-serif;
   background-color: #111;
   color: #fff;
-  width: 100%;
+  width: 100vw;
   min-height: 15rem;
 }
 
@@ -1088,11 +664,10 @@ footer h2 {
 /* Copyright */
 .footer-bottom {
   text-align: center;
-  margin-top: 20px;
   font-size: 12px;
   color: #aaa;
   line-height: 1.5;
-  padding: 0 20px;
+  padding: 10px 20px;
 }
 
 .footer-bottom a {
@@ -1162,14 +737,15 @@ footer h2 {
   }
 } */
 
- @media (max-width: 1023px) {
+@media (max-width: 1023px) {
   .vertical-line {
     left: 22vw;
   }
+
   .l2 {
     left: 48vw;
   }
-    }
+}
 
 /* Tablet Portrait (768px - 991px) */
 @media (max-width: 991px) {
@@ -1266,197 +842,8 @@ footer h2 {
 
 /* ==========------- FOOTER END -------============ */
 
-
-
-/* --- Search Button and Popup --- */
-
-.search-wrapper {
-  position: fixed;
-  bottom: 2.4rem;
-  right: 3rem;
-  z-index: 1001;
-}
-
-.search-toggle-btn {
-  background-color: #000000;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-}
-
-
-.search-popup-container {
-  position: absolute;
-  bottom: 5px;
-  right: 70px;
-  width: 0;
-  height: 50px;
-  background-color: rgb(222, 222, 222);
-  border-radius: 25px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  padding: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s ease;
-  overflow: hidden;
-}
-
-.search-popup-container.active {
-  width: 300px;
-  opacity: 1;
-  visibility: visible;
-  padding: 0 1rem;
-}
-
-.search-toggle-btn:active .search-icon {
-  animation: spin 3s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-.search-input {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: transparent;
-  font-size: 1rem;
-  outline: none;
-}
-
-/* --- Filter Icon --- */
-.filter-icon1, .filter-icon2 {
-  display: none;
-  /* Hidden by default */
-  width: 1.5rem;
-  height: 1.5rem;
-  filter: invert(100%);
-}
-
-.filter-icon2{
-  width: 1.48rem;
-  height: 1.48rem;
-
-}
-
-/* --- Filter Tags --- */
-.filter-options-container {
-  position: absolute;
-  bottom: 70px;
-  /* Position above the search button */
-  right: 0;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 10px;
-  display: none;
-  /* Hidden by default */
-  flex-wrap: wrap;
-  gap: 8px;
-  width: 250px;
-}
-
-.filter-options-container.visible {
-  display: flex;
-  /* Show the container */
-}
-
-.filter-tag input[type="checkbox"] {
-  display: none;
-  /* Hide the actual checkbox */
-}
-
-.filter-tag label {
-  display: block;
-  padding: 6px 12px;
-  background-color: #f0f0f0;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  user-select: none;
-}
-
-.filter-tag input[type="checkbox"]:checked+label {
-  background-color: #e62222;
-  /* Red color for selected tag */
-  color: white;
-}
-
-/* ///////////////// */
-
-/* Smooth rotation for the search icon */
-.search-icon,
-.filter-icon1,
-.filter-icon2 {
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  display: inline-block;
-}
-
-/* Rotate out animation for hiding the search icon */
-.rotate-out {
-  transform: rotate(360deg) scale(0);
-  opacity: 0;
-}
-
-/* Rotate in animation for showing the filter icon */
-.rotate-in {
-  transform: rotate(0deg) scale(1);
-  opacity: 1;
-}
-
-
-
-/* ========================== */
-
-
-
-
-/* ======. MEDIA QUERY FOR MOBILE ====== */
-
-
+/* Mobile Responsive (max-width: 550px) */
 @media (max-width: 550px) {
-
-  .link1 {
-    font-size: 0.98rem;
-  }
-
-  .Line1 {
-    width: 100vw;
-    left: 0;
-  }
-
-  .topic {
-    font-size: 0.95rem;
-  }
-
-  .HOME {
-    height: 93vh;
-  }
-
-
-
-  p {
-    font-weight: 300;
-  }
-
   /* ===== SIDEBAR ========= */
 
   .sidebar {
@@ -1499,15 +886,12 @@ footer h2 {
     display: block;
     margin: 0;
     padding: 0;
-    z-index: 2000;
+    z-index: 200;
     transform: translateX(30px);
     width: 70%;
     opacity: 0.36;
     color: transparent;
   }
-
-
-
 
 
   /* ===== HEADER ====== */
@@ -1561,171 +945,6 @@ footer h2 {
     border-left: none;
     transform: translateX(-75px);
   }
-
-
-
-
-
-
-  /* == Search Button and Popup == */
-  .search-wrapper {
-    bottom: 1rem;
-    right: 1.2rem;
-  }
-
-  .search-toggle-btn {
-    width: 50px;
-    height: 50px;
-  }
-
-  .search-popup-container {
-    bottom: 5px;
-    right: 60px;
-    height: 43px;
-  }
-
-  .filter-options-container {
-    bottom: 60px;
-    right: 0;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-    padding: 8px;
-    width: max-content;
-  }
-
-  .filter-tag label {
-    padding: 3px 7px;
-    font-size: 0.85rem;
-  }
-
-  .search-popup-container.active {
-    min-width: 65vw;
-    width: auto;
-  }
-
-
-
-  /* page width adjustments */
-  .main {
-    width: 90%;
-    overflow-wrap: break-word;
-  }
-
-
-  /* LATEST NEWS PAGE */
-
-  /* news timeline hover */
-  .news-card:focus .details {
-    max-height: max-content;
-    /* enough to show the content */
-    opacity: 1;
-  }
-
-  .news-card:focus {
-    border-left: 1.5px solid black;
-  }
-
-  .timeline {
-    padding-left: 6.5rem;
-  }
-
-  .timeline::before {
-    left: 6.5rem;
-  }
-
-  .news-card h3 {
-    font-size: 1rem;
-  }
-
-  .time {
-    left: -7rem;
-    width: 5rem;
-    font-size: 1rem;
-  }
-
-  .details em {
-    /* gvuyuhi */
-    font-size: 0.86rem;
-    line-height: 0.1px;
-    letter-spacing: 0.1px;
-  }
-
-  .info p {
-    font-size: 0.9rem;
-  }
-
-
-  /* feature page */
-  .img {
-    width: 100%;
-  }
-
-  figure {
-    width: 100%;
-    margin: 0;
-  }
-
-  .info1,
-  .info2 {
-    text-align: left;
-    margin-top: -25px;
-  }
-
-  .news-card {
-    padding-left: 20px;
-  }
-
-  .line3 {
-    margin: 30px 100px;
-  }
-
-  .info h3 {
-    font-size: 16px;
-  }
-
-  .date+p {
-    font-size: 0.8rem;
-  }
-
-  .date {
-    font-size: 0.77rem;
-  }
-
-  .img {
-    border-radius: 10px;
-  }
-
-
-
-
-  /* TOP NEWS PAGE */
-
-  .highlights {
-    margin: 1rem;
-    gap: 1.5rem;
-  }
-
-  .column h1 {
-    font-size: 1.3rem;
-  }
-
-  .column .item h2 {
-    font-size: 0.9rem;
-
-  }
-
-  .column .item p {
-    font-size: 0.9rem;
-    line-height: 17px;
-    letter-spacing: 0.5px;
-  }
-
-  .column .item {
-    margin-bottom: 0;
-  }
-
-
-
-
 
   /* ==========  FOOTER ========== */
 
@@ -1804,13 +1023,6 @@ footer h2 {
 
 }
 
-/* ======. MEDIA QUERY FOR MOBILE END ====== */
-
-
-
-
-
-/* Extra Small Mobile (up to 375px) */
 @media (max-width: 375px) {
   footer h2 {
     font-size: 0.9rem;
@@ -1828,4 +1040,495 @@ footer h2 {
   .footer-bottom {
     font-size: 9px;
   }
+}
+
+
+
+
+
+/* ========--------- POPUP STYLES ---------========= */
+
+/* Utility: Hide elements */
+.hidden {
+  display: none !important;
+}
+
+/* ========------- SUBSCRIBE POPUP ---------========= */
+
+/* THE OVERLAY (Background Dimmer) */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup.pop-card {
+  background: white;
+  width: 90%;
+  max-width: 600px;
+  height: 30%;
+  border-radius: 10px;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.overlay.active .popup.pop-card {
+  transform: scale(1);
+}
+
+.pop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.pop-logo {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 200;
+  color: #333;
+  letter-spacing: 0.5px;
+}
+
+.text-red {
+  color: #d73634;
+}
+
+.close-icon-wrapper {
+  cursor: pointer;
+  color: #ff4444;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-icon-wrapper:hover {
+  transform: scale(1.1);
+  color: #cc0000;
+}
+
+.pop-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 30px;
+}
+
+#view-options {
+  margin-top: 09px;
+}
+
+.sm-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120%;
+  max-width: 300px;
+  padding: 12px 20px;
+  background-color: white;
+  border: 1px solid #777;
+  border-radius: 50px;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.89rem;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  position: relative;
+  height: 35px;
+}
+
+.sm-btn img {
+  filter: grayscale(100%);
+}
+
+.sm-btn:hover {
+  background-color: #d73634;
+  color: white;
+  border-color: #d73634;
+}
+
+.btn-icon {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 20px;
+}
+
+.email-icon {
+  stroke: #444;
+  stroke-width: 1.2px;
+}
+
+.pop-footer {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.pop-footer a {
+  color: #2d4dcf;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
+
+
+
+/* ============ VIEW 2: EMAIL FORM STYLES ============ */
+
+#view-email {
+  padding: 30px;
+  padding-top: 10px;
+}
+
+.pop-label {
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.pop-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.pop-input {
+  flex-grow: 4;
+  padding: 12px 15px;
+  border: none;
+  background-color: #f0f0f0;
+  /* Grey background */
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  color: #333;
+}
+
+.pop-input::placeholder {
+  opacity: 0.32;
+}
+
+.pop-btn-continue {
+  flex-grow: 3.2;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0 25px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 100;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  transition: opacity 0.2s;
+}
+
+.pop-btn-continue:hover {
+  opacity: 0.8;
+}
+
+.pop-info {
+  color: #d73634;
+  font-size: 0.9rem;
+  font-weight: 300;
+  text-align: left;
+  line-height: 1.4;
+  margin-bottom: 30px;
+}
+
+.pop-back-wrap {
+  text-align: right;
+  position: fixed;
+  top: 90%;
+  left: 90%;
+}
+
+.pop-back {
+  color: hsla(1, 67%, 52%, 0.5);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.pop-back:hover {
+  color: hsla(1, 67%, 52%, 0.7);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+  .pop-card {
+    padding: 25px 20px;
+  }
+
+  .pop-form {
+    flex-direction: column;
+  }
+
+  .pop-btn-continue {
+    padding: 12px;
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* Container alignment */
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  /* Aligns box with top line of text */
+  gap: 12px;
+  margin-top: 15px;
+}
+
+/* 1. HIDE the real ugly browser checkbox */
+.pop-check {
+  display: none;
+}
+
+/* 2. Style the Label text */
+.checkbox-row label {
+  position: relative;
+  cursor: pointer;
+  padding-left: 28px;
+  /* Space for the custom box */
+  line-height: 1.6;
+  user-select: none;
+  /* Prevents highlighting text while clicking */
+  color: #d73634;
+  /* Dark grey text */
+}
+
+/* 3. Create the UNCHECKED Box (Black Border, White Background) */
+.checkbox-row label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  /* Fine-tune vertical position */
+  width: 15px;
+  height: 15px;
+  border: 1.5px solid #333;
+  /* Black border */
+  background-color: #fff;
+  /* White background */
+  border-radius: 4px;
+  /* Soft corners */
+}
+
+/* 4. Create the CHECKMARK (Hidden by default) */
+.checkbox-row label::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  /* Position inside the box */
+  top: 4.5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  /* White checkmark */
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  /* Rotate to make check shape */
+  opacity: 0;
+}
+
+/* 5. CHECKED STATE (Red Background) */
+.pop-check:checked+label::before {
+  background-color: #1f1111;
+  /* YOUR THEME RED */
+  border-color: #2d1414;
+}
+
+/* 6. Show the Checkmark when checked */
+.pop-check:checked+label::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+.pop-check:checked+label {
+  color: #ab3232;
+}
+
+
+
+
+
+
+
+
+/* === NEW OTP VIEW STYLES === */
+
+.otp-heading {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+}
+
+.otp-subtext {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-size: 0.84rem;
+  margin-bottom: 25px;
+  margin-top: 20px;
+}
+
+.email-highlight {
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+
+/* 6-Digit Input Group */
+.otp-input-group {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.otp-digit {
+  width: 65px;
+  height: 40px;
+  border: none;
+  background-color: #f0f0f0;
+  /* Light grey bg like image */
+  border-radius: 8px;
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  outline: none;
+  transition: all 0.2s;
+  color: rgb(51 51 51 / 40%);
+}
+
+.otp-digit:focus {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+
+.black-btn {
+  background-color: #000;
+  color: white;
+  width: 150px;
+  margin-bottom: 15px;
+  padding: 10px 0;
+  font-weight: 300;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  letter-spacing: 1px;
+}
+
+.black-btn:hover {
+  background-color: #333;
+}
+
+/* Resend Section (Red text) */
+.resend-wrapper {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #d73634;
+  /* Theme Red */
+  font-family: monospace;
+  /* Monospace for the numbers looks techy */
+  cursor: default;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#resend-timer {
+  font-family: monospace;
+  /* Keeps '00 : 30' from shifting the text around */
+  margin-left: 5px;
+}
+
+/* When resend is clickable */
+.resend-active {
+  cursor: pointer;
+  font-weight: normal;
+}
+
+/* Toast Notification */
+.otp-toast {
+  position: absolute;
+  top: 10px;
+  /* Positioned just below header */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 8px 24px;
+  border-radius: 3.5px;
+  font-size: 0.85rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  z-index: 20;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.otp-toast.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#view-otp {
+  text-align: center;
+}
+
+/* to remove arrow in otp box */
+/* Chrome, Safari, Edge, Opera */
+.otp-digit::-webkit-outer-spin-button,
+.otp-digit::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.otp-digit[type="number"] {
+  -moz-appearance: textfield;
 }

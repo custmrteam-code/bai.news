@@ -6,74 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students-BAI</title>
     <link rel="stylesheet" href="students.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../layout/layout.css">
+    <link rel="stylesheet" href="../docs/index.css">
 </head>
 
 <body>
 
     <!-- HEADER AND NAVIGATION BAR -->
-
-    <header id="header">
-
-        <!-- SIDE BAR -->
-        <div class="main_box">
-            <input type="checkbox" id="check" />
-
-            <!-- label - the checkbox —-->
-            <label for="check" class="btn_toggle">
-                <div class="background1">
-                    <div class="menu__icon" aria-hidden="true">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-            </label>
-
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <hr class="hr1">
-                <a href="index.html" class="menu-item">
-                    <img src="./assets/home.png" alt="img" class="icon4">
-                    <span class="label">home</span>
-                </a>
-                <hr>
-                <a href="Students.html" class="menu-item">
-                    <img src="./assets/Student Icon.png" alt="img" class="icon4">
-                    <span class="label">students</span>
-                </a>
-                <hr>
-                <a href="#" class="menu-item">
-                    <img src="./assets/Tech Icons.png" alt="img" class="icon4">
-                    <span class="label">artificial intelligence</span>
-                </a>
-            </div>
-        </div>
-
-
-        <!-- END OF SIDE BAR -->
-
-        <!-- LOGO -->
-        <a href="index.html" class="LOGO">bai.news</a>
-        <!-- BELL ICON AND SUBSCRIBE BUTTON -->
-        <a href="subscribe.html">
-            <button class="noselect"><span class="text">subscribe</span>
-
-                <span class="icon"> <svg viewBox="0 0 448 512" class="bell">
-                        <path
-                            d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z">
-                        </path>
-                    </svg></span></button>
-        </a>
-
-    </header>
+    <div id="global-header"></div>
     <!-- END OF HEADER AND NAVIGATION BAR -->
 
     <section class="HOME">
-
-        <!-- CONTENT -->
         <h1 class="name">Study With <span class="text-red"> Transparency</span>. </h1>
     </section>
+
 
     <div><p class="topic">ai.learn</p></div>
     <hr class="l">
@@ -126,6 +72,13 @@
         <hr class="Line2">
 
     </article>
+
+
+    <!-- footer -->
+         <div id="global-footer"></div>
+
+
+    <script defer type="module" src="../layout/layout.js"></script>
 
 </body>
 
