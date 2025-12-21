@@ -2,22 +2,22 @@
 // 0. FIREBASE CONFIGURATION & IMPORTS
 // ==========================================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, TwitterAuthProvider, signInWithPopup, onAuthStateChanged, signOut, signInAnonymously, updateProfile} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig = {
-    // ... PASTE YOUR KEYS HERE ...
-    apiKey: "AIzaSyC_Q3p2dyKwUOUv5O-gIMNI8vv6RrD0IZY",
-    authDomain: "bai-news-9e4cf.firebaseapp.com",
-    projectId: "bai-news-9e4cf",
-    storageBucket: "bai-news-9e4cf.firebasestorage.app",
-    messagingSenderId: "1056453543830",
-    appId: "1:1056453543830:web:c40a8c1e5bb582f2c63fb7"
+  apiKey: "AIzaSyC_Q3p2dyKwUOUv5O-gIMNI8vv6RrD0IZY",
+  authDomain: "bai-news-9e4cf.firebaseapp.com",
+  projectId: "bai-news-9e4cf",
+  storageBucket: "bai-news-9e4cf.firebasestorage.app",
+  messagingSenderId: "1056453543830",
+  appId: "1:1056453543830:web:c40a8c1e5bb582f2c63fb7"
 };
 
 // Initialize
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+const twitterProvider = new TwitterAuthProvider();
 
 // ==========================================
 // AUTH LOGIC (Login & UI Updates)
@@ -54,6 +54,37 @@ function handleGoogleLogin() {
             alert("Login Failed: " + error.message);
         });
 }
+
+    // for TWITTER
+    function handleTwitterLogin() {
+        signInWithPopup(auth, twitterProvider)
+            .then((result) => {
+                const user = result.user;
+                console.log("Twitter Login Success:", user.displayName);
+                
+                // 1. Close Popup
+                const overlay = document.getElementById('popupOverlay');
+                if(overlay) overlay.classList.remove('active');
+
+                // 2. LocalStorage handles the UI automatically via onAuthStateChanged
+                // (But you can force an update here if you want extra speed)
+            })
+            .catch((error) => {
+                console.error("Twitter Login Error:", error);
+                alert("Twitter Login Failed: " + error.message);
+            });
+    }
+
+    document.addEventListener('click', (e) => {
+        // Google
+        if (e.target.closest('#google-login-btn')) {
+            handleGoogleLogin();
+        }
+        // Twitter / X
+        if (e.target.closest('#twitter-login-btn')) {
+            handleTwitterLogin();
+        }
+    });
 
 // 3. CHECK LOGIN STATE (Runs on page load)
 onAuthStateChanged(auth, (user) => {
@@ -553,6 +584,157 @@ function initPopupLogic() {
             if(inputEmail) inputEmail.focus();
         });
     }
+
+    // ==========================================
+    // GOOGLE APPS SCRIPT AUTH LOGIC
+    // ==========================================
+
+    // 1. CONFIGURATION
+    // PASTE YOUR GOOGLE SCRIPT URL HERE
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZ5TN8yWPNlKnqWIwZY1EETxkp8X_MtHKanSD9m5KtexX23zTFlH-Hs9M_RUz03Oq0-w/exec"; 
+
+    let generatedOTP = null; // To store the code we sent
+
+    // 2. SEND OTP FUNCTION
+    function sendOTP(email) {
+        // A. Generate a random 6-digit number
+        generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+        console.log("Dev Check (Code):", generatedOTP); // For testing
+
+        // B. Show user we are working
+        const toast = document.getElementById('otp-toast'); // Ensure you have this HTML element
+        if(toast) { 
+            toast.textContent = "Sending Code..."; 
+            toast.classList.add('show'); 
+        }
+
+        // C. Send to Google
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            // We send it as text/plain to avoid CORS "preflight" issues with Google
+            body: JSON.stringify({ email: email, otp: generatedOTP }),
+        })
+        .then(response => response.text()) // Read response as text
+        .then(result => {
+            console.log("Google Response:", result);
+            
+            // Update UI
+            if(toast) { 
+                toast.textContent = "Code Sent!"; 
+                setTimeout(() => toast.classList.remove('show'), 3000);
+            }
+        })
+        .catch(error => {
+            console.error("Error sending email:", error);
+            alert("Could not send email. Check console.");
+        });
+    }
+
+    // 3. VERIFY OTP FUNCTION
+    function verifyOTP() {
+        // 1. Get the numbers from boxes
+        let enteredCode = "";
+        const inputs = document.querySelectorAll('.otp-digit');
+        inputs.forEach(input => enteredCode += input.value);
+
+        console.log("Checking:", enteredCode, "vs", generatedOTP); 
+
+        // 2. Check Match
+        if (enteredCode === generatedOTP) {
+            
+            // 3. Authenticate (MODULAR SYNTAX FIX)
+            signInAnonymously(auth)
+                .then((result) => {
+                    // A. Get Email for Name
+                    const userEmail = document.getElementById('email-input').value;
+                    const derivedName = userEmail.split('@')[0];
+
+                    // B. Update Profile (MODULAR SYNTAX FIX)
+                    updateProfile(result.user, { 
+                        displayName: derivedName 
+                    }).then(() => {
+                        
+                        // C. UPDATE UI
+                        // (Ensure this function is available globally)
+                        if (typeof updateUIForUser === "function") {
+                            updateUIForUser(result.user);
+                        }
+                        
+                        // D. CLOSE POPUP
+                        // Use resetPopupState since closePopup isn't defined in your code
+                        resetPopupState(); 
+                        
+                        alert("Account Created Successfully!"); 
+                    });
+                })
+                .catch((error) => {
+                    console.error("Firebase Auth Error:", error);
+                    alert("Login failed: " + error.message);
+                });
+
+        } else {
+            alert("Incorrect Code. Please try again.");
+            // Optional: Clear inputs on fail
+            inputs.forEach(input => input.value = "");
+        }
+    }
+
+    // ==========================================
+    // Connect the Buttons
+    // ==========================================
+
+
+    // A. When user submits the Email Form
+
+    if (formEmail) {
+        formEmail.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = inputEmail.value.trim();
+            
+            if (email) {
+                // 1. Switch View (Hide Email Form, Show OTP Form)
+                document.getElementById('view-email').classList.add('hidden');
+                document.getElementById('view-otp').classList.remove('hidden');
+                
+                // 2. Send the Code!
+                sendOTP(email);
+                
+                // 3. Start Timer (Optional)
+                startOtpTimer(); 
+            }
+        });
+    }
+
+    // B. When user types in OTP boxes (Auto-Verify)
+    otpInputs.forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            // Auto-focus next box
+            if (input.value.length === 1 && index < otpInputs.length - 1) {
+                otpInputs[index + 1].focus();
+            }
+            
+            // Check if all filled -> Verify automatically
+            // We delay slightly to let the last number appear
+            if (index === 5 && input.value !== "") {
+                setTimeout(verifyOTP, 100); 
+            }
+        });
+    });
+
+    // ==========================================
+    // FIX: LISTEN FOR CLICKS ON THE "CREATE" BUTTON
+    // ==========================================
+    document.addEventListener('click', (e) => {
+        // Check if the thing clicked is the verify button (or inside it)
+        if (e.target.closest('#btn-verify-otp')) {
+            e.preventDefault(); // Stop page reload
+            
+            console.log("Create Button Clicked! (Via Delegation)");
+            
+            // Run the verification function
+            verifyOTP();
+        }
+    });
 }
 
 // ==========================================
