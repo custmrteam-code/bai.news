@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAI ARTICLES PAGE</title>
+    <link rel="stylesheet" href="../main/index.css">
+    <link rel="stylesheet" href="../layout/layout.css">
+    <link rel="stylesheet" href="article.css">
+
+    <meta property="og:title" content="Supernova Discovered Near Earth" />
+    <meta property="og:description" content="Scientists have just announced a major discovery..." />
+    <meta property="og:image" content="https://yourwebsite.com/assets/actual-news-image.jpg" /> 
+    <meta property="og:url" content="https://yourwebsite.com/news/article-1" />
+    <meta property="og:type" content="article" />
+    
+    <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+    <!-- HEADER AND NAVIGATION BAR -->
+    <div id="global-header"></div>
+
+
+    <!-- ARTICLE CONTENT -->
+     <section class="main">
+        <h1 id="news-headline">      </h1>
+        <br>
+        <p id="news-date" class="date">      </p>
+        <hr class="last-hr">
+        <div class="article-meta">
+            
+            <section class="author-profile">
+                <a href="../author/author.html?id=priyanshuranjank@gmail.com"><img src="      " alt="Priyanshu" class="author-avatar"></a>
+                <div class="author-info">
+                    <a href="../author/author.html?id=priyanshuranjank@gmail.com"><span class="author-name">      </span></a>
+                    <button class="follow-btn">Follow</button>
+                </div>
+            </section>
+                 
+            <!-- share & bookmark -->
+            <div class="article-actions">
+                <a href="#">Share<img src="../assets/share icon unfilled.png"  class="s-icon s-icon1"></a>
+                <a href="#">Save<img src="../assets/save icon.png" class="s-icon s-icon2"></a>
+            </div>
+        </div>
+
+        <figure>
+            <img src="      " alt="Article Image" id="news-img"><br>
+            <!-- <figcaption><em>Image Caption: BBC Headquarters in London</em></figcaption> -->
+        </figure>
+        <div id="article-content">      </div>
+
+        <hr class="last-hr">
+
+        <section class="tags">
+            <div class="article-tags">
+                <a href="img">      </a>
+            </div>
+            <div class="article-tags">
+                <a href="img">      </a>
+            </div>
+            <div class="article-tags">
+                <a href="img">      </a>
+            </div>
+        </section>
+
+     </section>
+
+     <section class="more-news">
+        <hr class="more">
+        <h2>Related News</h2>
+        <div id="related-container" class="related-articles">
+
+            <div>
+                <img src="      " alt="Related Article 1">
+                <h3><a href="#">      </a></h3>
+            </div>
+
+            <div>
+                <img src="      " alt="Related Article 2">
+                <h3><a href="#">      </a></h3>
+            </div>
+
+            <div>
+                <img src="      " alt="Related Article 3">
+                <h3><a href="#">      </a></h3>
+            </div>
+     </section>
+
+
+
+
+
+
+
+    <!-- footer -->
+    <div id="global-footer"></div>
+
+    <!-- IMPORT DATA FIRST -->
+    <script src="../Article/multi-article-data.js"></script>
+    
+    <!-- IMPORT LOGIC SECOND -->
+    <script defer type="module" src="../layout/layout.js"></script>
+    <script type="module" src="article.js"></script>
+</body>
+</html>
